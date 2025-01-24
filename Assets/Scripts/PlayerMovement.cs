@@ -187,7 +187,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void InitJump(int numberofJumpsUsed)
+    public void InitJump(int numberofJumpsUsed)
     {
         if (!_isJumping)
         {
@@ -278,7 +278,7 @@ public class PlayerMovement : MonoBehaviour
 
             _fastFallTime += Time.fixedDeltaTime;
         }
-        
+
         //Normal Gravity while Falling
         if (!_isGrounded && !_isJumping)
         {
@@ -338,4 +338,6 @@ public class PlayerMovement : MonoBehaviour
         IsGrounded();
         BumpedHead();
     }
+
+    
 }
