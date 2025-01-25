@@ -38,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
 
     private float _coyoteTimer;
 
+
     private void Awake()
     {
         _isFacingRight = true;
@@ -339,5 +340,26 @@ public class PlayerMovement : MonoBehaviour
         BumpedHead();
     }
 
-    
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (!collision.gameObject.CompareTag("Bubble"))
+            return;
+
+        bool fromAbove = false;
+        foreach (ContactPoint2D contact in collision.contacts)
+        {
+            if (contact.normal.y > 0.5f)
+            {
+                fromAbove = true;
+                break;
+            }
+        }
+
+        if (fromAbove)
+        {
+            VerticalVelocity = 200f;
+            _isJumping = true;
+        }
+    }
+
 }

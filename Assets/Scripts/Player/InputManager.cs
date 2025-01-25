@@ -17,6 +17,7 @@ public class InputManager : MonoBehaviour
     private InputAction _moveAction;
     private InputAction _jumpAction;
     private InputAction _runAction;
+
     // Start is called before the first frame update
     private void Awake() {
         PlayerInput = GetComponent<PlayerInput>();
