@@ -39,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
     private float _coyoteTimer;
 
 
+
     private void Awake()
     {
         _isFacingRight = true;
@@ -124,7 +125,7 @@ public class PlayerMovement : MonoBehaviour
             _jumpReleasedDuringBuffer = false;
         }
 
-        if (InputManager.JumpReleased)
+        /*if (InputManager.JumpReleased)
         {
             if (_jumpBufferTime > 0f)
             {
@@ -146,7 +147,7 @@ public class PlayerMovement : MonoBehaviour
                     _fastFallReleaseSpeed = VerticalVelocity;
                 }
             }
-        }
+        }*/
 
         //Init Jump with jump buffer and coyote time
         if (_jumpBufferTime > 0f && !_isJumping && (_isGrounded || _coyoteTimer > 0f))
@@ -188,7 +189,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void InitJump(int numberofJumpsUsed)
+    public void InitJump(int numberofJumpsUsed, float jumpVelocity = 39.14857f)
     {
         if (!_isJumping)
         {
@@ -197,7 +198,7 @@ public class PlayerMovement : MonoBehaviour
 
         _jumpBufferTime = 0f;
         _numberOfJumpsUsed += numberofJumpsUsed;
-        VerticalVelocity = MovementStats.InitialJumpVelocity;
+        VerticalVelocity = jumpVelocity;
     }
 
 
@@ -358,7 +359,9 @@ public class PlayerMovement : MonoBehaviour
         if (fromAbove)
         {
             VerticalVelocity = 200f;
-            _isJumping = true;
+            MovementStats.jumpHeight = 3f;
+            InitJump(0,120f);
+            MovementStats.jumpHeight = 6.35f;
         }
     }
 

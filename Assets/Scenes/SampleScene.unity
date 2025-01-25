@@ -268,6 +268,7 @@ MonoBehaviour:
   defaultCursor: {fileID: 0}
   bubblePrefab: {fileID: 6441635002947546871, guid: 29f1ccd8ff1fac64ea230ba4497c0d2f, type: 3}
   maxBubbleCount: 3
+  bubbleList: []
 --- !u!1 &45550493
 GameObject:
   m_ObjectHideFlags: 0
@@ -1304,6 +1305,10 @@ PrefabInstance:
     - target: {fileID: 6441635002947546871, guid: 29f1ccd8ff1fac64ea230ba4497c0d2f, type: 3}
       propertyPath: m_Name
       value: Bubble
+      objectReference: {fileID: 0}
+    - target: {fileID: 6441635002947546871, guid: 29f1ccd8ff1fac64ea230ba4497c0d2f, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
