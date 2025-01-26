@@ -6,7 +6,8 @@ using UnityEngine;
 public class Bubble : MonoBehaviour
 {
     public int health = 10;
-
+    public AudioClip bubbleGenerate, bubblePutdown, bubbleBreak;
+    private AudioSource audioSource;
     private Collider2D bubbleCollider;
     private Animator animator;
 
@@ -14,11 +15,15 @@ public class Bubble : MonoBehaviour
     {
         bubbleCollider = GetComponent<Collider2D>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
+
     }
 
     private void Start()
     {
         StartCoroutine(DecreaseHealthOverTime());
+        audioSource.clip = bubbleGenerate;
+        audioSource.Play();
     }
 
     private IEnumerator DecreaseHealthOverTime()
@@ -63,7 +68,8 @@ public class Bubble : MonoBehaviour
     {
         // Option 1: Wait until we enter the "Death" state, then wait until it's done
         // (Make sure your Animator has a state named "Death" or adjust accordingly.)
-
+        audioSource.clip = bubbleBreak;
+        audioSource.Play();
         // 1. Wait for the Animator to switch to the Death state
         //    (Prevents us from checking normalizedTime on the wrong clip)
         yield return new WaitUntil(() => 
@@ -74,6 +80,7 @@ public class Bubble : MonoBehaviour
             animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
 
         // Now the animation has finished, destroy the bubble
+        
         Destroy(gameObject);
     }
 }

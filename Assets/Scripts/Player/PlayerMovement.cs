@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Callbacks;
 using UnityEditor.Experimental;
 using UnityEngine;
 using UnityEngine.AI;
@@ -12,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Collider2D _bodyCol;
 
     private Rigidbody2D _rb;
+    public AudioClip stepSound, jumpSound, deathSound, bounceSound;
+    private AudioSource audioSource;
 
     private Vector2 _moveVelocity;
     private bool _isFacingRight;
@@ -45,19 +48,31 @@ public class PlayerMovement : MonoBehaviour
         _isFacingRight = true;
 
         _rb = GetComponent<Rigidbody2D>();
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
     {
         CountTimer();
         JumpChecks();
-
+        if(InputManager.Movement != Vector2.zero){
+            
+        }
     }
 
     private void FixedUpdate()
     {
         CollisionCheck();
         Jump();
+        if(_isGrounded && InputManager.Movement != Vector2.zero && !audioSource.isPlaying)
+        {
+            Debug.Log("Moving");
+            audioSource.clip = stepSound;
+   
+            audioSource.Play();
+            
+        }
 
         if (_isGrounded)
         {
@@ -73,8 +88,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if (moveInput != Vector2.zero)
         {
+            
             TurnCheck(moveInput);
             Vector2 targetVelocity = Vector2.zero;
+            
             if (InputManager.RunHeld)
             {
                 targetVelocity = new Vector2(moveInput.x, 0f) * MovementStats.MaxRunSpeed;
@@ -88,6 +105,7 @@ public class PlayerMovement : MonoBehaviour
         {
             _moveVelocity = Vector2.Lerp(_moveVelocity, Vector2.zero, deceleration * Time.fixedDeltaTime);
             _rb.velocity = new Vector2(_moveVelocity.x, _rb.velocity.y);
+            //audioSource.Stop();
         }
     }
 
@@ -121,8 +139,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (InputManager.JumpPressed)
         {
+            
             _jumpBufferTime = MovementStats.JumpBufferTime;
             _jumpReleasedDuringBuffer = false;
+            audioSource.clip = jumpSound;
+            audioSource.Play();
         }
 
         /*if (InputManager.JumpReleased)
@@ -152,6 +173,7 @@ public class PlayerMovement : MonoBehaviour
         //Init Jump with jump buffer and coyote time
         if (_jumpBufferTime > 0f && !_isJumping && (_isGrounded || _coyoteTimer > 0f))
         {
+            
             InitJump(1);
 
             if (_jumpReleasedDuringBuffer)
@@ -195,7 +217,8 @@ public class PlayerMovement : MonoBehaviour
         {
             _isJumping = true;
         }
-
+        //audioSource.clip = jumpSound;
+        //audioSource.Play();
         _jumpBufferTime = 0f;
         _numberOfJumpsUsed += numberofJumpsUsed;
         VerticalVelocity = jumpVelocity;
@@ -207,6 +230,7 @@ public class PlayerMovement : MonoBehaviour
         //Apply gravity during jumping
         if (_isJumping)
         {
+            
             if (_bumpedHead)
             {
                 _isFastFalling = true;
@@ -316,6 +340,7 @@ public class PlayerMovement : MonoBehaviour
         _groundHit = Physics2D.BoxCast(boxCastOrigin, boxCastSize, 0f, Vector2.down, MovementStats.GroundDetectionRayLength, MovementStats.GroundLayer);
         if (_groundHit.collider != null)
         {
+            
             _isGrounded = true;
         }
         else { _isGrounded = false; }
@@ -358,6 +383,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (fromAbove)
         {
+            audioSource.clip = bounceSound;
+            audioSource.Play();
             VerticalVelocity = 200f;
             MovementStats.jumpHeight = 3f;
             InitJump(0,120f);

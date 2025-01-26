@@ -7,11 +7,13 @@ public class SavePoint : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        
         // Check if the collider's GameObject is tagged 'Player'
         if (other.CompareTag("Player") && !isActivated)
         {
+            
             isActivated = true;
-
+            
             // Update the GameManager's current spawn point to this position
             GameManager.Instance.UpdateSavePoint(transform.position);
 

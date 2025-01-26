@@ -393,6 +393,10 @@ MonoBehaviour:
   MovementStats: {fileID: 11400000, guid: 8da3af45fb9847b44af7cc63b30e4860, type: 2}
   _feetCol: {fileID: 2172676802241426416}
   _bodyCol: {fileID: 5313223301073737787}
+  stepSound: {fileID: 8300000, guid: 59e84498fcc30154a9e3801bb732c498, type: 3}
+  jumpSound: {fileID: 8300000, guid: 60528dc2917f3fd41a0e3cc01f928023, type: 3}
+  deathSound: {fileID: 8300000, guid: 4cee4c615e1b0c740904f8757224442a, type: 3}
+  bounceSound: {fileID: 8300000, guid: 5ef4d38a71da23b4b9401237aad92bd4, type: 3}
 --- !u!114 &224728477112058057
 MonoBehaviour:
   m_ObjectHideFlags: 0

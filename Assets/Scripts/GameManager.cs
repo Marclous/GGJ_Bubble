@@ -14,9 +14,11 @@ public class GameManager : MonoBehaviour
 
     // The position where the player will respawn after death
     private Vector3 lastSavePosition;
+    private AudioSource audioSource;
 
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         // Enforce a singleton pattern
         if (Instance != null && Instance != this)
         {
@@ -45,6 +47,7 @@ public class GameManager : MonoBehaviour
     public void UpdateSavePoint(Vector3 newSavePosition)
     {
         lastSavePosition = newSavePosition;
+        audioSource.Play();
         Debug.Log("GameManager: Updated savepoint to " + newSavePosition);
     }
 
@@ -65,6 +68,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void RestartGame()
     {
+        audioSource.Play();
         // Hide the UI
         if (gameOverUI != null)
             gameOverUI.SetActive(false);
