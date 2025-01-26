@@ -10,11 +10,11 @@ public class StartGameButton : MonoBehaviour
     // This is only available in the Editor; you can drag the scene here in the Inspector
     #if UNITY_EDITOR
     [Header("Drag a scene into this field in the Editor")]
-    [SerializeField] private SceneAsset sceneAsset;
+    public SceneAsset sceneAsset;
     #endif
 
     
-    private string sceneName = "";
+    [SerializeField]private string sceneName = "";
     // Whenever something changes in the Editor, if we have a SceneAsset assigned,
     // we update the sceneName (so it works in a standalone build as well).
     #if UNITY_EDITOR
