@@ -32,7 +32,7 @@ MonoBehaviour:
   NumberOfJumpsAllowed: 1
   TimeForUpwardsCancel: 0.043
   ApexThreshold: 1
-  ApexHangTime: 0.075
+  ApexHangTime: 0.116
   JumpBufferTime: 0.095
   JumpCoyoteTime: 0.1
   ShowWalkJumpArc: 0
