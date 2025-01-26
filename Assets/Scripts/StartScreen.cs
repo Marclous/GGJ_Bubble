@@ -42,4 +42,15 @@ public class StartGameButton : MonoBehaviour
             Debug.LogError("No scene is assigned or the scene name is empty. Make sure you dragged a Scene Asset and added it to Build Settings!");
         }
     }
+
+    public void ExitGame()
+    {
+#if UNITY_EDITOR
+        // 在编辑器模式下停止播放
+        EditorApplication.isPlaying = false;
+#else
+            // 在编译后的应用里退出程序
+            Application.Quit();
+#endif
+    }
 }
