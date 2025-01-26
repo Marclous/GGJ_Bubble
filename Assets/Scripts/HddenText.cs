@@ -35,6 +35,7 @@ public class HddenText : MonoBehaviour
                 isTriggered = true;
                 if (text != null)
                     text.gameObject.SetActive(true);
+                boxCol.isTrigger = false;
 
                 break;
             }
