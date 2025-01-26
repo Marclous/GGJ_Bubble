@@ -42,6 +42,7 @@ public class BubbleTrigger : MonoBehaviour
                 if (bubbleCursor != null)
                 {
                     Cursor.SetCursor(bubbleCursor, Vector2.zero, CursorMode.Auto);
+                    // Vector2 hotspot = new Vector2(bubbleCursor.width * 0.5f, bubbleCursor.height * 0.5f);
                     isBubbleCursor = true;
                 }
                 if (postProcessObject != null)
