@@ -12,9 +12,9 @@ public class StartGameButton : MonoBehaviour
     [Header("Drag a scene into this field in the Editor")]
     [SerializeField] private SceneAsset sceneAsset;
     #endif
+
     
     private string sceneName = "";
-
     // Whenever something changes in the Editor, if we have a SceneAsset assigned,
     // we update the sceneName (so it works in a standalone build as well).
     #if UNITY_EDITOR
@@ -31,10 +31,16 @@ public class StartGameButton : MonoBehaviour
     #endif
 
     // This function is called by the button's OnClick event
+    public void starting()
+    {
+        Invoke("StartGame", 0.5f);
+    }
     public void StartGame()
     {
+
         if (!string.IsNullOrEmpty(sceneName))
         {
+            
             SceneManager.LoadScene(sceneName);
         }
         else
@@ -46,10 +52,10 @@ public class StartGameButton : MonoBehaviour
     public void ExitGame()
     {
 #if UNITY_EDITOR
-        // ÔÚ±à¼­Æ÷Ä£Ê½ÏÂÍ£Ö¹²¥·Å
+        // ï¿½Ú±à¼­ï¿½ï¿½Ä£Ê½ï¿½ï¿½Í£Ö¹ï¿½ï¿½ï¿½ï¿½
         EditorApplication.isPlaying = false;
 #else
-            // ÔÚ±àÒëºóµÄÓ¦ÓÃÀïÍË³ö³ÌÐò
+            // ï¿½Ú±ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ë³ï¿½ï¿½ï¿½ï¿½ï¿½
             Application.Quit();
 #endif
     }
