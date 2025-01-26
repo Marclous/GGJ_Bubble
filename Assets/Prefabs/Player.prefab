@@ -405,7 +405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 051bbed716c102340895de8dcd32ec73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bubbleCursor: {fileID: 2800000, guid: 16c3ed1aba886bd41bb4af5594bffa75, type: 3}
+  bubbleCursor: {fileID: 2800000, guid: 66621f492a4eaa444b9346310a50b53f, type: 3}
   defaultCursor: {fileID: 0}
   bubblePrefab: {fileID: 6441635002947546871, guid: 29f1ccd8ff1fac64ea230ba4497c0d2f, type: 3}
   postProcessObject: {fileID: 0}
