@@ -6,6 +6,7 @@ public class BubbleTrigger : MonoBehaviour
     public Texture2D bubbleCursor;
     public Texture2D defaultCursor;
     public GameObject bubblePrefab;
+    public GameObject postProcessObject;
 
     public int maxBubbleCount = 3;
 
@@ -27,6 +28,9 @@ public class BubbleTrigger : MonoBehaviour
     {
         if (defaultCursor != null)
             Cursor.SetCursor(defaultCursor, Vector2.zero, CursorMode.Auto);
+
+        if (postProcessObject != null)
+            postProcessObject.SetActive(false);
     }
 
     private void Update()
@@ -40,9 +44,15 @@ public class BubbleTrigger : MonoBehaviour
                     Cursor.SetCursor(bubbleCursor, Vector2.zero, CursorMode.Auto);
                     isBubbleCursor = true;
                 }
+                if (postProcessObject != null)
+                    postProcessObject.SetActive(true);
             }
             else
+            {
                 SetDefaultCursor();
+                if (postProcessObject != null)
+                    postProcessObject.SetActive(false);
+            }
         }
 
         if (isBubbleCursor && Input.GetMouseButtonDown(0))
@@ -56,6 +66,8 @@ public class BubbleTrigger : MonoBehaviour
             InstantiateBubble(mousePosition);
 
             SetDefaultCursor();
+            if (postProcessObject != null)
+                postProcessObject.SetActive(false);
         }
 
         if (isBubbleCursor) 
