@@ -14,7 +14,7 @@ public class Bubble : MonoBehaviour
     {
         while (health > 0)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSecondsRealtime(1f);
             health--;
 
             if (health <= 0)

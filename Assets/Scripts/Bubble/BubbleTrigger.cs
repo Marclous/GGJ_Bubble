@@ -73,7 +73,9 @@ public class BubbleTrigger : MonoBehaviour
         if (isBubbleCursor) 
         {
             Time.timeScale = 0.1f;
-        }else{
+        }
+        else
+        {
             Time.timeScale = 1f;
         }
     }
