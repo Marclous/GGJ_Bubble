@@ -138,6 +138,7 @@ public class Spike : MonoBehaviour
             PlayerMovement playerMovement = collision.GetComponentInParent<PlayerMovement>();
             if (playerMovement != null)
             {
+                playerMovement.DisableMovement();
                 playerMovement.enabled = false;
             }
 

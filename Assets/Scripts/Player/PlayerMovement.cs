@@ -365,4 +365,12 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void DisableMovement()
+    {
+        if (_rb != null)
+        {
+            _rb.velocity = Vector2.zero;
+            _rb.angularVelocity = 0f;
+        }
+    }
 }
